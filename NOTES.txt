@@ -1,0 +1,5 @@
+Work Distribution
+	Jiayan: Room.java and Game.java
+	Pete: the other stuff
+
+Note: I deleted our old fork that was created on last Friday and created this new one because Laboon updated the repo.
