@@ -3,3 +3,5 @@ Work Distribution
 	Pete: the other stuff
 
 Note: I deleted our old fork that was created on last Friday and created this new one because Laboon updated the repo.
+
+I‘ve got my Mockito to work in Eclipse, so I will actually dive into the tests!
