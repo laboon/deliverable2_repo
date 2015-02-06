@@ -152,14 +152,16 @@ public class RoomTest
 	}
 
 	/*
-	 * Test that get description returns a string that it is not null
+	 * Test that get description returns a string that contains certain substrings, 
+	 * which should be present in all description strings for each room
 	 */
 	@Test
 	public void testGetDescription() 
 	{
 		Room r = new Room(true, true, true, true, true);
-		String desc = r.getDescription();		
-		assertNotNull(desc);
+		String desc = r.getDescription();
+		assertTrue(desc.contains("You see a"));
+		assertTrue(desc.contains("It has a"));
 	}
 
 }
