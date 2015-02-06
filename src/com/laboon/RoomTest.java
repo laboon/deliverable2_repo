@@ -1,81 +1,165 @@
 package com.laboon;
 
-
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 
 public class RoomTest 
 {
-
-	@Test
-	public void testHasItem() 
-	{
-		assertTrue(true);
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	/* Check for not having sugar with a mocked Room
-	 * Check for having sugar with a Room instantiated with sugar
+	/*
+	 * Test hasItem() with all items, should return true
 	 */
-	public void testHasSugar() 
-	{
-		Room r = mock(Room.class);
-		assertFalse(r.hasSugar());
-		
-		r = new Room(true, true, true, true, true);
-		assertTrue(r.hasSugar());		
+	@Test
+	public void testRoomHasAllItems() 
+	{		
+		Room r = new Room(true, true, true, true, true);
+		assertTrue(r.hasItem());
+	}
+	
+	/*
+	 * Test hasItem() with 1 item, should return true
+	 */
+	@Test
+	public void testRoomHasOneItem() 
+	{		
+		Room r = new Room(true, false, false, true, true);
+		assertTrue(r.hasItem());
 	}
 
+	
+	/*
+	 * Test hasItem() with a room with no items, should return false
+	 */
+	@Test
+	public void testRoomHasNoItems()
+	{
+		Room r = new Room(false, false, false, true, true);
+		assertFalse(r.hasItem());
+	}
+
+	/* 
+	 * Test for having sugar with a Room instantiated with sugar
+	 */
+	@Test
+	public void testHasSugar() 
+	{	
+		Room r = new Room(true, true, true, true, true);
+		assertTrue(r.hasSugar());
+	}
+	
+	
+	/*
+	 * Test for not having sugar
+	 */
+	@Test
+	public void testDoesNotHaveSugar()
+	{
+		Room r = new Room(false, false, false, false, false);
+		assertFalse(r.hasSugar());		
+	}
+	
+	/*
+	 * Test for having cream
+	 */
 	@Test
 	public void testHasCream() 
-	{
-		Room r = mock(Room.class);
-		assertFalse(r.hasCream());
-		
-		r = new Room(true, true, true, true, true);
+	{		
+		Room r = new Room(true, true, true, true, true);
 		assertTrue(r.hasCream());	
 	}
-
+	
+	/*
+	 * Test for not having cream
+	 */
 	@Test
-	public void testHasCoffee() {
-		Room r = mock(Room.class);
-		assertFalse(r.hasCoffee());
-		
-		r = new Room(true, true, true, true, true);
+	public void testDoesNotHaveCream()
+	{
+		Room r = new Room(false, false, false, false, false);
+		assertFalse(r.hasCream());
+	}
+	
+	/*
+	 * Test for having coffee
+	 */
+	@Test
+	public void testHasCoffee() 
+	{
+		Room r = new Room(true, true, true, true, true);
 		assertTrue(r.hasCoffee());	
 	}
-
+	
+	/*
+	 * Test for not having coffee
+	 */
 	@Test
-	public void testNorthExit() 
+	public void testDoesNotHaveCoffee()
 	{
-		Room r = mock(Room.class);
-		assertFalse(r.northExit());
-		
-		r = new Room(true, true, true, true, true);
-		assertTrue(r.northExit());	
-		
+		Room r = new Room(false, false, false, false, false);
+		assertFalse(r.hasCoffee());
 	}
 
+	/*
+	 * Test for a room having a north exit
+	 */
 	@Test
-	public void testSouthExit() {
-		Room r = mock(Room.class);
-		assertFalse(r.southExit());
-		
-		r = new Room(true, true, true, true, true);
+	public void testHasNorthExit() 
+	{		
+		Room r = new Room(true, true, true, true, true);
+		assertTrue(r.northExit());	
+	}
+
+	/*
+	 * Test for a room not having a north exit
+	 */
+
+	@Test
+	public void testDoesNotHaveNorthExit()
+	{
+		Room r = new Room(false, false, false, false, false);
+		assertFalse(r.northExit());
+	}
+
+	/*
+	 * Test for a room having a south exit
+	 */
+
+	@Test
+	public void testHasSouthExit() 
+	{		
+		Room r = new Room(true, true, true, true, true);
 		assertTrue(r.southExit());	
 	}
+	
+	/*
+	 * Test for a room not having a south exit
+	 */
 
 	@Test
-	public void testRoom() {
-		fail("Not yet implemented");
+	public void testDoesNotHaveSouthExit()
+	{
+		Room r = new Room(false, false, false, false, false);
+		assertFalse(r.southExit());
 	}
 
+	/*
+	 * Test that Room constructor creates object
+	 */
 	@Test
-	public void testGetDescription() {
-		fail("Not yet implemented");
+	public void testRoomConstructor() {
+		Room r = null;
+		r = new Room(true, true, true, true, true);
+		assertNotNull(r);
+	}
+
+	/*
+	 * Test that get description returns a string that it is not null
+	 */
+	@Test
+	public void testGetDescription() 
+	{
+		Room r = new Room(true, true, true, true, true);
+		String desc = r.getDescription();		
+		assertNotNull(desc);
 	}
 
 }
