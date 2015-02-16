@@ -1,9 +1,13 @@
 import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
+import static org.mockito.Mockito.*;
+//import org.mockito.Mock;
+//import org.mockito.Mockito;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -14,7 +18,7 @@ public class GameUT {
 	House mockedHouse = Mockito.mock(House.class); 
 	@Before
 	public void setUp() throws Exception {
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent));		
 	}
 	@After
 	public void tearDown() throws Exception {
@@ -69,20 +73,62 @@ public class GameUT {
 	// Test that typing "D" to drink is a recognized command
 	// Verify that the method drink() is called
 	@Test
-	public void testDrink() {
+	public void testDrinkLose() {
 		String drink = "D";
 		Game g = new Game(mockedPlayer, mockedHouse);
-		assertEquals(-1, g.doSomething(drink));
+		when(mockedPlayer.drink()).thenReturn(false);
+		assertEquals(-1, g.doSomething(drink));		
 	    Mockito.verify(mockedPlayer).drink();
 	}
 	
-	// Test that typing "s!" is not a recognized command
+	// Test that typing "D" to drink is a recognized command
+	// Verify that the method drink() is called
+	@Test
+	public void testDrinkWin() {
+		String drink = "D";
+		Game g = new Game(mockedPlayer, mockedHouse);
+		when(mockedPlayer.drink()).thenReturn(true);
+		assertEquals(1, g.doSomething(drink));
+	    Mockito.verify(mockedPlayer).drink();
+	}
+	
+	// Test that typing "h" for help is a recognized command
+	// Verify that the method help() is called
+	@Test
+	public void testHelp() {
+		String help = "h";
+		Game g = new Game(mockedPlayer, mockedHouse);		
+		assertEquals(0, g.doSomething(help));
+		assertNull(outContent.toString().trim());
+	}
+	
+	// Test that typing "sss" is not a recognized command
 	// and a message "What?" gets printed out on console
 	@Test
-	public void testIllegalCommand() {
-		String illegalCommand = "s!";
+	public void testIllegalCmdString() {
+		String illegalCommand = "sss";
+		Game g = new Game(mockedPlayer, mockedHouse);		
+		g.doSomething(illegalCommand);
+		assertEquals("What?", outContent.toString().trim());
+	}
+	
+	// Test that typing "4" is not a recognized command
+	// and a message "What?" gets printed out on console
+	@Test
+	public void testIllegalCmdNumber() {
+		String illegalCommand = "4";
 		Game g = new Game(mockedPlayer, mockedHouse);		
 		g.doSomething(illegalCommand);
 		assertEquals("What?", outContent.toString().trim());
 	}	
+	
+	// Test that when there is no input entry (empty command) 
+	// a message "What?" gets printed out on console
+	@Test
+	public void testIllegalCmdEmpty() {
+		String illegalCommand = "";
+		Game g = new Game(mockedPlayer, mockedHouse);		
+		g.doSomething(illegalCommand);
+		assertEquals("What?", outContent.toString().trim());
+	}
 }

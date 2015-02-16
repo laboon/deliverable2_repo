@@ -23,13 +23,13 @@ public class RoomUT {
 	@Test
 	public void testNoItemExists() {
 		Room r = new Room(false, false, false, true, false);
-		assertFalse(r.hasItem());		
+		assertFalse(r.hasItem());
 	}
 	// Test that hasItem() returns true when one item (coffee) exists
 	@Test
 	public void testItemSugarExists() {
 		Room r = new Room(true, false, false, false, true);
-		assertTrue(r.hasItem());	
+		assertTrue(r.hasItem());
 	}
 	// Test that hasItem() returns true when one item (cream) exists
 	@Test
