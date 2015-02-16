@@ -47,6 +47,8 @@ public class GameTest {
 		Mockito.when(p2.drink()).thenReturn(false); //Means that mock player is drinking incorrect items
 		
 		Game g = new Game(p2, h);
+		
+		//Make sure doSomething returns 1 when we make the player drink
 		assertEquals(g.doSomething("D"), -1);	
 	}
 }
