@@ -1,4 +1,4 @@
-package com.laboon;
+package deliverable2_repo;
 
 public class Player {
 
