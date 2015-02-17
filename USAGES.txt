@@ -1,0 +1,1 @@
+To run all the UTs together as a test suite, open AllTests.java and hit run in Eclipse.
