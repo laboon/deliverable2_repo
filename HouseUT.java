@@ -124,6 +124,7 @@ public class HouseUT {
 		when(rooms[0].southExit()).thenReturn(false);
 		when(rooms[0].getDescription()).thenReturn("room 1");
 		House house = new House(rooms);
+		house.moveSouth();
 		
 		assertTrue(house.getCurrentRoomInfo().equals("room 1"));
 	}
