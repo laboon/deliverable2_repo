@@ -12,16 +12,20 @@ public class CoffeeMakerUT {
 
 	private static ByteArrayOutputStream consoleOut = new ByteArrayOutputStream();
 	
+	//Redirects System.out calls to the consoleOut byte array before any tests run
 	@BeforeClass
 	public static void setUpAll() {
 		System.setOut(new PrintStream(consoleOut));
 	}
 	
+	//Restores System.out calls to their normal function	
 	@AfterClass
 	public static void tearDownAll() {
 		System.setOut(System.out);
 	}
-	
+		
+	//Before each test: flush the output to the byte array, and reset it, so we are
+	//starting over
 	@Before
 	public void setUp() {
 		System.out.flush();
@@ -33,6 +37,7 @@ public class CoffeeMakerUT {
 	/////////////////////
 	
 	//Tests that the method prints things and returns 0
+	//Expect that the runArgs method prints information to stdOut
 	@Test
 	public void testRunArgs() {
 		CoffeeMaker cm = new CoffeeMaker();
