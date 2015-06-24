@@ -1,4 +1,3 @@
-package com.laboon;
 
 public class House {
 
@@ -78,7 +77,6 @@ public class House {
 		}
 		
 		return toReturn;
-	}
-	
+	}	
 	
 }
